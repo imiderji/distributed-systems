@@ -1,5 +1,5 @@
 init:
-	python -m pip install poetry==1.8.2
+	python3 -m pip install poetry==1.8.2
 	poetry install --no-root
 
 ci-test:
