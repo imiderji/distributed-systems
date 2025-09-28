@@ -18,6 +18,8 @@ class UsersByTitleStorage:
         имеющих объявления с заданным заголовком.
         """
         # YOUR CODE GOES HERE
+        key = f'title:{title}'
+        await self._client.sadd(key, user_id)
 
     async def find_users_by_title(self, title: str) -> list[int]:
         """
@@ -25,3 +27,11 @@ class UsersByTitleStorage:
         с заданным title.
         """
         # YOUR CODE GOES HERE
+        users = []
+        key = f'title:{title}'
+
+        user_ids = await self._client.smembers(key)
+        for user_id in user_ids:
+            users.append(int(user_id))
+
+        return users
